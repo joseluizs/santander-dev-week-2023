@@ -15,6 +15,7 @@ public class UserServiceImpl implements UserService {
     public UserServiceImpl(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
+
     @Override
     public User findById(Long id) {
         return userRepository.findById(id).orElseThrow(NoSuchElementException::new);
@@ -22,8 +23,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User create(User userToCreate) {
-        if (userRepository.existsByAccountNumber(userToCreate.getAccount().getNumber())){
-            throw new IllegalArgumentException("Tis Account number already exists.");
+        if (userRepository.existsByAccountNumber(userToCreate.getAccount().getNumber())) {
+            throw new IllegalArgumentException("This Account number already exists.");
         }
         return userRepository.save(userToCreate);
     }
