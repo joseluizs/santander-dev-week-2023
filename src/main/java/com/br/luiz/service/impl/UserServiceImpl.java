@@ -21,6 +21,7 @@ public class UserServiceImpl implements UserService {
         return userRepository.findById(id).orElseThrow(NoSuchElementException::new);
     }
 
+
     @Override
     public User create(User userToCreate) {
         if (userRepository.existsByAccountNumber(userToCreate.getAccount().getNumber())) {
